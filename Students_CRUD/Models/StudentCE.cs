@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Students_CRUD.Models
 {
-    public class StudenCE
+    public class StudentCE
     {
     }
     public partial class Student {

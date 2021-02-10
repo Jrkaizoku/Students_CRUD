@@ -5,10 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Lista de Alumnos</h2>
 
 <p>
-    @Html.ActionLink("Crear Nuevo", "Create")
+    
+    @Html.ActionLink("Nuevo", "Create", routeValues: null, htmlAttributes: new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>
@@ -57,9 +58,20 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
             @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Delete", "Delete", new { id=item.id },new { @class="fdelete"})
         </td>
     </tr>
 }
 
 </table>
+
+@section scripts{
+    <script>
+        $(".fdelete").click(function (event) {
+            if (!confirm("Se eliminara permanentemete si continua")) {
+                event.preventDefault();
+            }
+
+        });
+        </script>
+}
