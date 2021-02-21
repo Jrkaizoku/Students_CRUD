@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Students_CRUD.Models.Notes>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Examen 1
+        </th>
+        <th>
+            Tarea ex-aula
+        </th>
+        <th>
+           Examen 2
+        </th>
+        <th>
+            Promedio
+        </th>
+        <th>
+            Estudiante
+        </th>
+        <th>
+            Materia
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.exam1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.homework)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.exam2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.avg)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Subject.name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

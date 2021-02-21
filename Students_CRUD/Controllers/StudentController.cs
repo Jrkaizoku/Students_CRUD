@@ -13,8 +13,10 @@ namespace Students_CRUD.Controllers
         public ActionResult Index()
         {
             StudentContext db = new StudentContext();
-           
-            return View(db.Student.ToList());
+            ViewBag.Student= db.Student.ToList();
+
+
+            return View();
         }
 
         // GET: Student/Details/5
@@ -26,7 +28,7 @@ namespace Students_CRUD.Controllers
 
         // POST: Student/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Create(Student student)
         {
             try

@@ -16,11 +16,11 @@ using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public partial class Student
+    public partial class Subject
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public Student()
+    public Subject()
     {
 
         this.Notes = new HashSet<Notes>();
@@ -31,14 +31,6 @@ using System;
         public int id { get; set; }
         [Required]
         public string name { get; set; }
-        [Required]
-        public string last_name { get; set; }
-        [Required]
-        public Nullable<int> age { get; set; }
-        [Required]
-        public string gender { get; set; }
-        [Required]
-        public System.DateTime registration_date { get; set; }
 
 
 
