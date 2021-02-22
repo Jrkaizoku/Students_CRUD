@@ -17,40 +17,25 @@ using System;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
-    public partial class Student
+    public partial class Teacher
 {
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public Student()
-    {
-
-        this.Notes = new HashSet<Notes>();
-
-    }
-
-
+      
     public int id { get; set; }
         [DisplayName("Nombre")]
         [Required]
+        [MaxLength(length:50)]
         public string name { get; set; }
+
         [DisplayName("Apellido")]
         [Required]
+        [MaxLength(length: 50)]
         public string last_name { get; set; }
-        [DisplayName("Edad")]
+        [DisplayName("Correo")]
         [Required]
-        public Nullable<int> age { get; set; }
-        [DisplayName("Genero")]
+        public string email { get; set; }
+        [DisplayName("Telefono")]
         [Required]
-        public string gender { get; set; }
-        [DisplayName("Registrado")]
-       
-        public System.DateTime registration_date { get; set; }
-
-
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<Notes> Notes { get; set; }
+        public string phone { get; set; }
 
 }
 

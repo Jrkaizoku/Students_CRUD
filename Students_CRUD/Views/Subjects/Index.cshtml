@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Materias";
+}
+
+<h2>Materias</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create",routeValues: null, htmlAttributes: new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr class="btn-primary">
+        <th>
+            Materia
+        </th>
+        <th>Acciones</th>
+        
+    </tr>
+   
+    @foreach (var item in ViewBag.Subject)
+    {
+<tr>
+    <td>
+        @item.name
+    </td>
+   
+    <td>
+        @Html.ActionLink(" ", "Edit", new { id = item.id }, htmlAttributes: new { @class = "glyphicon glyphicon-pencil" }) |
+        @Html.ActionLink(" ", "Details", new { id = item.id }, htmlAttributes: new { @class = "glyphicon glyphicon-eye-open" }) |
+        @Html.ActionLink(" ", "Delete", new { id = item.id }, new { @class = "glyphicon glyphicon-trash fdelete" })
+    </td>
+</tr>
+    }
+
+</table>

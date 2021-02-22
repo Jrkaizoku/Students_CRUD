@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Students_CRUD.Models.Student>
+﻿
+
+@model Students_CRUD.Models.Student
+
 
 @{
     ViewBag.Title = "Lista de Alumnos";
@@ -8,70 +11,152 @@
 <h2>Lista de Alumnos</h2>
 
 <p>
-    
-    @Html.ActionLink("Nuevo", "Create", routeValues: null, htmlAttributes: new { @class = "btn btn-primary" })
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Nuevo Alumno
+    </button>
+    @Html.ActionLink(" Nuevo", "Create", routeValues: null, htmlAttributes: new { @class = "btn btn-primary" })
+
+
 </p>
 <table class="table">
-    <tr>
+    <tr class="btn-primary">
         <th>
-            @Html.DisplayNameFor(model => model.fullName)
+            Nombre completo
         </th>
-       
+
         <th>
-            @Html.DisplayNameFor(model => model.age)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.gender)
+            Edad
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.registration_date)
+            Genero
         </th>
-        <th></th>
+        <th>
+            Fecha de registro
+        </th>
+        <th>Acciones</th>
     </tr>
 
-@foreach (var item in Model)
-{
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.fullName)
-        </td>
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.age)
-        </td>
-        <td>
+    @foreach (var item in ViewBag.Student)
+    {
+        <tr>
+            <td>
+                @item.fullName
+            </td>
 
-            @{
-                switch (item.gender)
-                {
-                    case "M": <span>Masculino</span>
-                                break;
-                    case "F":<span>Femenino</span>
-                        break;
-                        }
+            <td>
+                @item.age
+            </td>
+            <td>
 
-                  }
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.registration_date)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id },new { @class="fdelete"})
-        </td>
-    </tr>
-}
+                @{
+                    switch (item.gender)
+                    {
+                        case "M": <span>Masculino</span>
+                            break;
+                        case "F":<span>Femenino</span>
+                            break;
+                    }
+
+                }
+            </td>
+            <td>
+                @item.registration_date
+            </td>
+            <td>
+                @Html.ActionLink(" ", "Edit", new { id = item.id }, htmlAttributes: new { @class = "glyphicon glyphicon-pencil" }) |
+                @Html.ActionLink(" ", "Details", new { id = item.id }, htmlAttributes: new { @class = "glyphicon glyphicon-eye-open" }) |
+                @Html.ActionLink(" ", "Delete", new { id = item.id }, new { @class = "glyphicon glyphicon-trash fdelete" })
+
+            </td>
+        </tr>
+    }
 
 </table>
 
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="Student_form">
+                    <div class="form-horizontal ">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group col-md-12">
+                            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.last_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.last_name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.last_name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.age, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.age, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.age, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.gender, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.gender, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a href="#" class="btn btn-primary" id="btnSave">Save changes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 @section scripts{
     <script>
+
+        $(document).ready(function () {
+            $("#btnSave").click(function () {
+                var studentData = $("#Student_form").serialize();
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Student/Create",
+                    data: studentData,
+                    success: function () {
+                        window.location.href = "/Student/Index";
+                    }
+                })
+            })
+
+        });       
+
+
         $(".fdelete").click(function (event) {
             if (!confirm("Se eliminara permanentemete si continua")) {
                 event.preventDefault();
             }
 
         });
-        </script>
+    </script>
 }

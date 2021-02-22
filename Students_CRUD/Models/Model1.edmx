@@ -5,6 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="StudentDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Notes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_student" Type="int" Nullable="false" />
+          <Property Name="id_subject" Type="int" Nullable="false" />
+          <Property Name="exam1" Type="int" />
+          <Property Name="homework" Type="int" />
+          <Property Name="exam2" Type="int" />
+          <Property Name="avg" Type="float" />
+        </EntityType>
         <EntityType Name="Student">
           <Key>
             <PropertyRef Name="id" />
@@ -16,8 +28,69 @@
           <Property Name="gender" Type="char" MaxLength="1" />
           <Property Name="registration_date" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="50" />
+          <Property Name="last_name" Type="nchar" MaxLength="50" />
+          <Property Name="email" Type="nchar" MaxLength="20" />
+          <Property Name="phone" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Teacher_Subject">
+          <Key>
+            <PropertyRef Name="id_teacher" />
+            <PropertyRef Name="id_subject" />
+          </Key>
+          <Property Name="id_teacher" Type="int" Nullable="false" />
+          <Property Name="id_subject" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Notes_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Notes" Type="Self.Notes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Notes">
+              <PropertyRef Name="id_student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notes_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="Notes" Type="Self.Notes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Notes">
+              <PropertyRef Name="id_subject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="StudentDBModelStoreContainer">
+          <EntitySet Name="Notes" EntityType="Self.Notes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher_Subject" EntityType="Self.Teacher_Subject" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Notes_Student" Association="Self.FK_Notes_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Notes" EntitySet="Notes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notes_Subject" Association="Self.FK_Notes_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="Notes" EntitySet="Notes" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -25,7 +98,19 @@
       <Schema Namespace="StudentDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="StudentContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Student" EntityType="StudentDBModel.Student" />
-        </EntityContainer>
+          <EntitySet Name="Subject" EntityType="StudentDBModel.Subject" />
+          <EntitySet Name="Teacher" EntityType="StudentDBModel.Teacher" />
+          <EntitySet Name="Teacher_Subject" EntityType="StudentDBModel.Teacher_Subject" />
+          <EntitySet Name="Notes" EntityType="StudentDBModel.Notes" />
+          <AssociationSet Name="FK_Notes_Student" Association="StudentDBModel.FK_Notes_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Notes" EntitySet="Notes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notes_Subject" Association="StudentDBModel.FK_Notes_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="Notes" EntitySet="Notes" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Student">
           <Key>
             <PropertyRef Name="id" />
@@ -36,8 +121,73 @@
           <Property Name="age" Type="Int32" />
           <Property Name="gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="registration_date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Notes" Relationship="StudentDBModel.FK_Notes_Student" FromRole="Student" ToRole="Notes" />
         </EntityType>
-      </Schema>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Notes" Relationship="StudentDBModel.FK_Notes_Subject" FromRole="Subject" ToRole="Notes" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Teacher_Subject">
+          <Key>
+            <PropertyRef Name="id_teacher" />
+            <PropertyRef Name="id_subject" />
+          </Key>
+          <Property Name="id_teacher" Type="Int32" Nullable="false" />
+          <Property Name="id_subject" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Notes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_student" Type="Int32" Nullable="false" />
+          <Property Name="id_subject" Type="Int32" Nullable="false" />
+          <Property Name="exam1" Type="Int32" />
+          <Property Name="homework" Type="Int32" />
+          <Property Name="exam2" Type="Int32" />
+          <Property Name="avg" Type="Double" />
+          <NavigationProperty Name="Student" Relationship="StudentDBModel.FK_Notes_Student" FromRole="Notes" ToRole="Student" />
+          <NavigationProperty Name="Subject" Relationship="StudentDBModel.FK_Notes_Subject" FromRole="Notes" ToRole="Subject" />
+        </EntityType>
+        <Association Name="FK_Notes_Student">
+          <End Type="StudentDBModel.Student" Role="Student" Multiplicity="1" />
+          <End Type="StudentDBModel.Notes" Role="Notes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Notes">
+              <PropertyRef Name="id_student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notes_Subject">
+          <End Type="StudentDBModel.Subject" Role="Subject" Multiplicity="1" />
+          <End Type="StudentDBModel.Notes" Role="Notes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Notes">
+              <PropertyRef Name="id_subject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -51,6 +201,46 @@
                 <ScalarProperty Name="age" ColumnName="age" />
                 <ScalarProperty Name="last_name" ColumnName="last_name" />
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subject">
+            <EntityTypeMapping TypeName="StudentDBModel.Subject">
+              <MappingFragment StoreEntitySet="Subject">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teacher">
+            <EntityTypeMapping TypeName="StudentDBModel.Teacher">
+              <MappingFragment StoreEntitySet="Teacher">
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teacher_Subject">
+            <EntityTypeMapping TypeName="StudentDBModel.Teacher_Subject">
+              <MappingFragment StoreEntitySet="Teacher_Subject">
+                <ScalarProperty Name="id_subject" ColumnName="id_subject" />
+                <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notes">
+            <EntityTypeMapping TypeName="StudentDBModel.Notes">
+              <MappingFragment StoreEntitySet="Notes">
+                <ScalarProperty Name="avg" ColumnName="avg" />
+                <ScalarProperty Name="exam2" ColumnName="exam2" />
+                <ScalarProperty Name="homework" ColumnName="homework" />
+                <ScalarProperty Name="exam1" ColumnName="exam1" />
+                <ScalarProperty Name="id_subject" ColumnName="id_subject" />
+                <ScalarProperty Name="id_student" ColumnName="id_student" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

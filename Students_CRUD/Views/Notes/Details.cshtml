@@ -1,0 +1,66 @@
+﻿@model Students_CRUD.Models.Notes
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Notes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.exam1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exam1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.homework)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.homework)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.exam2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exam2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.avg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.avg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Student.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
