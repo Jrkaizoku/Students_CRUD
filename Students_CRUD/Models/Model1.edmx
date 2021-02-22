@@ -7,9 +7,15 @@
     <Schema Namespace="StudentDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Notes">
           <Key>
+<<<<<<< HEAD
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+=======
+            <PropertyRef Name="id_student" />
+            <PropertyRef Name="id_subject" />
+          </Key>
+>>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
           <Property Name="id_student" Type="int" Nullable="false" />
           <Property Name="id_subject" Type="int" Nullable="false" />
           <Property Name="exam1" Type="int" />
@@ -98,10 +104,17 @@
       <Schema Namespace="StudentDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="StudentContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Student" EntityType="StudentDBModel.Student" />
+<<<<<<< HEAD
           <EntitySet Name="Subject" EntityType="StudentDBModel.Subject" />
           <EntitySet Name="Teacher" EntityType="StudentDBModel.Teacher" />
           <EntitySet Name="Teacher_Subject" EntityType="StudentDBModel.Teacher_Subject" />
           <EntitySet Name="Notes" EntityType="StudentDBModel.Notes" />
+=======
+          <EntitySet Name="Notes" EntityType="StudentDBModel.Notes" />
+          <EntitySet Name="Subject" EntityType="StudentDBModel.Subject" />
+          <EntitySet Name="Teacher" EntityType="StudentDBModel.Teacher" />
+          <EntitySet Name="Teacher_Subject" EntityType="StudentDBModel.Teacher_Subject" />
+>>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
           <AssociationSet Name="FK_Notes_Student" Association="StudentDBModel.FK_Notes_Student">
             <End Role="Student" EntitySet="Student" />
             <End Role="Notes" EntitySet="Notes" />
@@ -110,7 +123,11 @@
             <End Role="Subject" EntitySet="Subject" />
             <End Role="Notes" EntitySet="Notes" />
           </AssociationSet>
+<<<<<<< HEAD
           </EntityContainer>
+=======
+        </EntityContainer>
+>>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
         <EntityType Name="Student">
           <Key>
             <PropertyRef Name="id" />
@@ -123,6 +140,7 @@
           <Property Name="registration_date" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Notes" Relationship="StudentDBModel.FK_Notes_Student" FromRole="Student" ToRole="Notes" />
         </EntityType>
+<<<<<<< HEAD
         <EntityType Name="Subject">
           <Key>
             <PropertyRef Name="id" />
@@ -131,6 +149,30 @@
           <Property Name="name" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Notes" Relationship="StudentDBModel.FK_Notes_Subject" FromRole="Subject" ToRole="Notes" />
         </EntityType>
+=======
+        <EntityType Name="Notes">
+          <Key>
+            <PropertyRef Name="id_student" />
+            <PropertyRef Name="id_subject" />
+          </Key>
+          <Property Name="id_student" Type="Int32" Nullable="false" />
+          <Property Name="id_subject" Type="Int32" Nullable="false" />
+          <Property Name="exam1" Type="Int32" />
+          <Property Name="homework" Type="Int32" />
+          <Property Name="exam2" Type="Int32" />
+          <Property Name="avg" Type="Double" />
+          <NavigationProperty Name="Student" Relationship="StudentDBModel.FK_Notes_Student" FromRole="Notes" ToRole="Student" />
+          <NavigationProperty Name="Subject" Relationship="StudentDBModel.FK_Notes_Subject" FromRole="Notes" ToRole="Subject" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Notes" Relationship="StudentDBModel.FK_Notes_Subject" FromRole="Subject" ToRole="Notes" />
+        </EntityType>
+>>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
         <EntityType Name="Teacher">
           <Key>
             <PropertyRef Name="id" />
@@ -149,6 +191,7 @@
           <Property Name="id_teacher" Type="Int32" Nullable="false" />
           <Property Name="id_subject" Type="Int32" Nullable="false" />
         </EntityType>
+<<<<<<< HEAD
         <EntityType Name="Notes">
           <Key>
             <PropertyRef Name="id" />
@@ -163,6 +206,8 @@
           <NavigationProperty Name="Student" Relationship="StudentDBModel.FK_Notes_Student" FromRole="Notes" ToRole="Student" />
           <NavigationProperty Name="Subject" Relationship="StudentDBModel.FK_Notes_Subject" FromRole="Notes" ToRole="Subject" />
         </EntityType>
+=======
+>>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
         <Association Name="FK_Notes_Student">
           <End Type="StudentDBModel.Student" Role="Student" Multiplicity="1" />
           <End Type="StudentDBModel.Notes" Role="Notes" Multiplicity="*" />
@@ -187,7 +232,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+<<<<<<< HEAD
         </Schema>
+=======
+      </Schema>
+>>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -205,6 +254,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+<<<<<<< HEAD
+=======
+          <EntitySetMapping Name="Notes">
+            <EntityTypeMapping TypeName="StudentDBModel.Notes">
+              <MappingFragment StoreEntitySet="Notes">
+                <ScalarProperty Name="avg" ColumnName="avg" />
+                <ScalarProperty Name="exam2" ColumnName="exam2" />
+                <ScalarProperty Name="homework" ColumnName="homework" />
+                <ScalarProperty Name="exam1" ColumnName="exam1" />
+                <ScalarProperty Name="id_subject" ColumnName="id_subject" />
+                <ScalarProperty Name="id_student" ColumnName="id_student" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+>>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
           <EntitySetMapping Name="Subject">
             <EntityTypeMapping TypeName="StudentDBModel.Subject">
               <MappingFragment StoreEntitySet="Subject">
@@ -232,6 +296,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+<<<<<<< HEAD
           <EntitySetMapping Name="Notes">
             <EntityTypeMapping TypeName="StudentDBModel.Notes">
               <MappingFragment StoreEntitySet="Notes">
@@ -245,6 +310,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+=======
+>>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

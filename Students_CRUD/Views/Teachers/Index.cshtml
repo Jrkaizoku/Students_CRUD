@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<Students_CRUD.Models.Teacher>
 
 @{
+<<<<<<< HEAD
     ViewBag.Title = "Maestros";
 }
 
@@ -11,6 +12,18 @@
 </p>
 <table class="table">
     <tr class="btn-success">
+=======
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+>>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
         <th>
             @Html.DisplayNameFor(model => model.name)
         </th>
@@ -23,7 +36,11 @@
         <th>
             @Html.DisplayNameFor(model => model.phone)
         </th>
+<<<<<<< HEAD
         <th>Acciones</th>
+=======
+        <th></th>
+>>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
     </tr>
 
 @foreach (var item in Model) {
@@ -41,10 +58,16 @@
             @Html.DisplayFor(modelItem => item.phone)
         </td>
         <td>
+<<<<<<< HEAD
             @Html.ActionLink(" ", "Edit", new { id = item.id }, htmlAttributes: new { @class = "glyphicon glyphicon-pencil" }) |
             @Html.ActionLink(" ", "Details", new { id = item.id }, htmlAttributes: new { @class = "glyphicon glyphicon-eye-open" }) |
             @Html.ActionLink(" ", "Delete", new { id = item.id }, new { @class = "glyphicon glyphicon-trash fdelete" })
 
+=======
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+>>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
         </td>
     </tr>
 }

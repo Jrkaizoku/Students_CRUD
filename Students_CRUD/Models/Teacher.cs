@@ -14,11 +14,15 @@ namespace Students_CRUD.Models
 
 using System;
     using System.Collections.Generic;
+<<<<<<< HEAD
     using System.ComponentModel;
+=======
+>>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
     using System.ComponentModel.DataAnnotations;
 
     public partial class Teacher
 {
+<<<<<<< HEAD
       
     public int id { get; set; }
         [DisplayName("Nombre")]
@@ -34,6 +38,18 @@ using System;
         [Required]
         public string email { get; set; }
         [DisplayName("Telefono")]
+=======
+        [Required]
+        public int id { get; set; }
+
+        [Required]
+        public string name { get; set; }
+
+        [Required]
+        public string last_name { get; set; }
+        [Required]
+        public string email { get; set; }
+>>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
         [Required]
         public string phone { get; set; }
 

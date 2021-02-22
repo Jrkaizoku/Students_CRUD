@@ -28,6 +28,7 @@ using System;
 
     }
 
+<<<<<<< HEAD
 
     public int id { get; set; }
         [DisplayName("Nombre")]
@@ -44,6 +45,19 @@ using System;
         public string gender { get; set; }
         [DisplayName("Registrado")]
        
+=======
+        [Required]
+        public int id { get; set; }
+        [Required]
+        public string name { get; set; }
+        [Required]
+        public string last_name { get; set; }
+        [Required]
+        public Nullable<int> age { get; set; }
+        [Required]
+        public string gender { get; set; }
+        [Required]
+>>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
         public System.DateTime registration_date { get; set; }
 
 

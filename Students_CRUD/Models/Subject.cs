@@ -14,7 +14,10 @@ namespace Students_CRUD.Models
 
 using System;
     using System.Collections.Generic;
+<<<<<<< HEAD
     using System.ComponentModel;
+=======
+>>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
     using System.ComponentModel.DataAnnotations;
 
     public partial class Subject
@@ -28,9 +31,14 @@ using System;
 
     }
 
+<<<<<<< HEAD
 
     public int id { get; set; }
         [DisplayName("Nombre")]
+=======
+        [Required]
+        public int id { get; set; }
+>>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
         [Required]
         public string name { get; set; }
 

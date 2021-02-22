@@ -46,6 +46,7 @@ namespace Students_CRUD.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
         public ActionResult Create([Bind(Include = "id_student,id_subject,exam1,homework,exam2")] Notes notes)
         {
             notes.avg = (notes.exam1 + notes.exam2 + notes.homework) / 3;
@@ -53,6 +54,12 @@ namespace Students_CRUD.Controllers
             if (ModelState.IsValid)
             {
               
+=======
+        public ActionResult Create([Bind(Include = "id_student,id_subject,exam1,homework,exam2,avg")] Notes notes)
+        {
+            if (ModelState.IsValid)
+            {
+>>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
                 db.Notes.Add(notes);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,6 +89,7 @@ namespace Students_CRUD.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
         public ActionResult Edit([Bind(Include = "id,id_student,id_subject,exam1,homework,exam2")] Notes notes)
         {
             notes.avg = (notes.exam1 + notes.exam2 + notes.homework) / 3;
@@ -89,6 +97,13 @@ namespace Students_CRUD.Controllers
             {
                 db.Entry(notes).State = EntityState.Modified;
                
+=======
+        public ActionResult Edit([Bind(Include = "id_student,id_subject,exam1,homework,exam2,avg")] Notes notes)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(notes).State = EntityState.Modified;
+>>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -14,11 +14,15 @@ namespace Students_CRUD.Models
 
 using System;
     using System.Collections.Generic;
+<<<<<<< HEAD
     using System.ComponentModel;
+=======
+>>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
     using System.ComponentModel.DataAnnotations;
 
     public partial class Notes
 {
+<<<<<<< HEAD
 
         public int id { get; set; }
        
@@ -50,6 +54,27 @@ using System;
 
        
         public virtual Subject Subject { get; set; }
+=======
+    [Required]
+    public int id_student { get; set; }
+
+    [Required]
+    public int id_subject { get; set; }
+        [Required]
+        public Nullable<int> exam1 { get; set; }
+        [Required]
+        public Nullable<int> homework { get; set; }
+        [Required]
+        public Nullable<int> exam2 { get; set; }
+        [Required]
+        public Nullable<double> avg { get; set; }
+
+
+
+    public virtual Student Student { get; set; }
+
+    public virtual Subject Subject { get; set; }
+>>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
 
 }
 
