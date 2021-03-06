@@ -16,11 +16,9 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-<<<<<<< HEAD
+
             @Html.LabelFor(model => model.id_student, "Estudiante", htmlAttributes: new { @class = "control-label col-md-2" })
-=======
-            @Html.LabelFor(model => model.id_student, "id_student", htmlAttributes: new { @class = "control-label col-md-2" })
->>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
+
             <div class="col-md-10">
                 @Html.DropDownList("id_student", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.id_student, "", new { @class = "text-danger" })
@@ -28,11 +26,9 @@
         </div>
 
         <div class="form-group">
-<<<<<<< HEAD
+
             @Html.LabelFor(model => model.id_subject, "Materia", htmlAttributes: new { @class = "control-label col-md-2" })
-=======
-            @Html.LabelFor(model => model.id_subject, "id_subject", htmlAttributes: new { @class = "control-label col-md-2" })
->>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
+
             <div class="col-md-10">
                 @Html.DropDownList("id_subject", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.id_subject, "", new { @class = "text-danger" })
@@ -63,19 +59,7 @@
             </div>
         </div>
 
-<<<<<<< HEAD
 
-        
-=======
-        <div class="form-group">
-            @Html.LabelFor(model => model.avg, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.avg, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.avg, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
->>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />

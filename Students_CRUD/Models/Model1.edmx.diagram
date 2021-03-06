@@ -4,25 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5f8d9532847745aab1ed95745c24ca71" Name="Diagram1">
-        <EntityTypeShape EntityType="StudentDBModel.Student" Width="1.5" PointX="0.75" PointY="0.75" />
-<<<<<<< HEAD
-        <EntityTypeShape EntityType="StudentDBModel.Subject" Width="1.5" PointX="0.75" PointY="4.25" />
-        <EntityTypeShape EntityType="StudentDBModel.Teacher" Width="1.5" PointX="3.375" PointY="4.875" />
-        <EntityTypeShape EntityType="StudentDBModel.Teacher_Subject" Width="1.5" PointX="5.375" PointY="0.875" />
-        <EntityTypeShape EntityType="StudentDBModel.Notes" Width="1.5" PointX="3" PointY="0.875" />
-        <AssociationConnector Association="StudentDBModel.FK_Notes_Student" />
-        <AssociationConnector Association="StudentDBModel.FK_Notes_Subject" />
-        </Diagram>
-=======
-        <EntityTypeShape EntityType="StudentDBModel.Notes" Width="1.5" PointX="3" PointY="0.75" />
-        <EntityTypeShape EntityType="StudentDBModel.Subject" Width="1.5" PointX="0.75" PointY="4.25" />
-        <EntityTypeShape EntityType="StudentDBModel.Teacher" Width="1.5" PointX="3.375" PointY="4.875" />
-        <EntityTypeShape EntityType="StudentDBModel.Teacher_Subject" Width="1.5" PointX="5.375" PointY="0.875" />
-        <AssociationConnector Association="StudentDBModel.FK_Notes_Student" />
-        <AssociationConnector Association="StudentDBModel.FK_Notes_Subject" />
+      <Diagram DiagramId="4caedebb05d44af3a78ef28646d3d0c6" Name="Diagram1">
+        <EntityTypeShape EntityType="StudentDBModel.Notes" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentDBModel.Student" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentDBModel.Subject" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentDBModel.Teacher" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentDBModel.Teacher_Subject" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="StudentDBModel.FK_Notes_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentDBModel.FK_Notes_Subject" ManuallyRouted="false" />
       </Diagram>
->>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

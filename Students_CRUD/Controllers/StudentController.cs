@@ -13,9 +13,7 @@ namespace Students_CRUD.Controllers
         public ActionResult Index()
         {
             StudentContext db = new StudentContext();
-            ViewBag.Student= db.Student.ToList();
-
-
+            ViewBag.Student= db.Student.ToList();    
             return View();
         }
 

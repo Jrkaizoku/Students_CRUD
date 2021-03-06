@@ -17,13 +17,11 @@ namespace Students_CRUD.Controllers
         // GET: Subjects
         public ActionResult Index()
         {
-<<<<<<< HEAD
+
             
             ViewBag.Subject = db.Subject.ToList();
             return View();
-=======
-            return View(db.Subject.ToList());
->>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
+
         }
 
         // GET: Subjects/Details/5
@@ -44,36 +42,29 @@ namespace Students_CRUD.Controllers
         // GET: Subjects/Create
         public ActionResult Create()
         {
-<<<<<<< HEAD
+
             ViewBag.Teacher = db.Teacher.ToList();
 
-=======
->>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-<<<<<<< HEAD
+
         public ActionResult Create([Bind(Include = "id,name")] Subject subject, int teacher)
         {
             
-=======
-        public ActionResult Create([Bind(Include = "id,name")] Subject subject)
-        {
->>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
+
             if (ModelState.IsValid)
             {
                 db.Subject.Add(subject);
                 db.SaveChanges();
-<<<<<<< HEAD
+
                 Teacher_Subject _Subject = new Teacher_Subject();
                 _Subject.id_subject = subject.id;
                 _Subject.id_teacher = teacher;
                 db.Teacher_Subject.Add(_Subject);
-                db.SaveChanges();
-=======
->>>>>>> 40cbb8848b5e549c619cb9f5a310519745663a30
+
                 return RedirectToAction("Index");
             }
 
